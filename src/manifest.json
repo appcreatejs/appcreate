@@ -1,5 +1,0 @@
-{
-  "date": "./Commands/DateCommand.js",
-  "help": "./Commands/HelpCommand.js",
-  "version": "./Commands/VersionCommand.js"
-}
