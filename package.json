@@ -2,7 +2,7 @@
   "name": "appcreate",
   "version": "0.2.0",
   "description": "AppCreate CLI é uma ferramenta de linha de comando poderosa para criação de projetos e gerenciamento de dependências dos pacotes AppCreate.",
-  "main": "src/index.js",
+  "main": "bin/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -32,5 +32,7 @@
   },
   "homepage": "https://appcreatejs.github.io",
   "devDependencies": {},
-  "dependencies": {}
+  "dependencies": {
+    "minimist": "^1.2.0"
+  }
 }
