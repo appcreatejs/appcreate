@@ -10,6 +10,7 @@ class InvalidCommandError extends AbstractError {
 
   /**
    * Cria uma instância de InvalidCommandError.
+   * 
    * @param {*} command
    * @memberof InvalidCommandError
    */

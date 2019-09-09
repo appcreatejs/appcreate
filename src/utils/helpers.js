@@ -1,3 +1,5 @@
+const path = require('path');
+
 /**
  * Verifica se um objeto é uma classe.
  *
@@ -12,6 +14,19 @@ function isClass(obj) {
   );
 }
 
+/**
+ * Normaliza o caminho de um diretório.
+ *
+ * @param {string} [pathString='']
+ * @returns
+ */
+function normalizePath(pathString = '') {
+  return (
+    pathString.replace(/\/|\\/g, path.sep)
+  );
+}
+
 module.exports = {
   isClass,
+  normalizePath,
 };

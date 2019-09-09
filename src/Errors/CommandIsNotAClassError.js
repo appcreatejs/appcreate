@@ -10,6 +10,7 @@ class CommandIsNotAClassError extends AbstractError {
 
   /**
    * Cria uma instância de CommandIsNotAClassError.
+   * 
    * @param {*} file
    * @memberof CommandIsNotAClassError
    */

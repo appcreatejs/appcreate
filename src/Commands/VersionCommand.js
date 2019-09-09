@@ -5,12 +5,14 @@ class VersionCommand extends AbstractCommand {
   constructor(args) {
 
     super(args);
-    this.name = 'version'; 
+    this.name = 'version';
+    this.description = 'get "appcreate" current version' 
   }
 
   run() {
     const { version } = require('../../package.json');
     console.log(`v${version}`);
+    process.exit();
   }
 }
 

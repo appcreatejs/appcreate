@@ -10,6 +10,7 @@ class MissingRunMethodError extends AbstractError {
 
   /**
    * Cria uma instância de MissingRunMethodError.
+   * 
    * @param {*} command
    * @memberof MissingRunMethodError
    */
