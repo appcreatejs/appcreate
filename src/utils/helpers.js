@@ -26,7 +26,25 @@ function normalizePath(pathString = '') {
   );
 }
 
+/**
+ * Normaliza o caminho de um diretório.
+ *
+ * @param {string} path
+ * @returns
+ */
+function isWritable(path) {
+
+  try {
+
+    fs.accessSync(path, fs.constants.W_OK);
+    return true;
+  } catch {
+    return false
+  }
+}
+
 module.exports = {
   isClass,
   normalizePath,
+  isWritable,
 };
