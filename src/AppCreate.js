@@ -189,9 +189,7 @@ class AppCreate {
     }
 
     if (process.platform !== 'win32' &&
-      !fs.accessSync(
-        manifestLocalCacheDirectory,
-        fs.constants.R_OK | fs.constants.W_OK)
+      !isWritable(manifestLocalCacheDirectory)
     ) {
 
       new ManifestDirectoryPermissionError(
