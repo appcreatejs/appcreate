@@ -41,8 +41,7 @@ class AppCreate {
    */
   static fromProcess() {
 
-    AppCreate.generateManifest(true);
-    AppCreate.generateManifest(false, true);
+    AppCreate.generateManifest(false);
     AppCreate.commands = require(AppCreate.getManifestGlobalFilePath());
     AppCreate.args = minimist(process.argv.slice(2));
     AppCreate.execute();
