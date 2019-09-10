@@ -20,12 +20,12 @@ class AbstractCommand {
   /**
    * A descrição do comando.
    */
-  description = 'No description for this command';
+  description = 'nenhuma descrição para este comando';
 
   /**
    * O texto ajuda para o comando.
    */
-  help = 'No help available for this command'
+  help = 'nenhuma ajuda disponível para este comando'
 
   /**
    * Cria uma instância de AbstractCommand.
@@ -34,6 +34,7 @@ class AbstractCommand {
    * @memberof AbstractCommand
    */
   constructor(args) {
+    
     this.args = args;
   }
 
@@ -44,6 +45,7 @@ class AbstractCommand {
    * @memberof AbstractCommand
    */
   run() {
+
     process.exit(1);
   }
 }

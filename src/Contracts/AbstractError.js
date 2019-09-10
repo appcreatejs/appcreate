@@ -13,6 +13,7 @@ class AbstractError extends Error {
    * @memberof AbstractError
    */
   constructor(args) {
+
     super(args);
   }
 
@@ -24,7 +25,9 @@ class AbstractError extends Error {
    * @memberof AbstractError
    */
   exitWithMessage(message) {
+    
     console.error(message);
+
     this.exit();
   }
   
@@ -34,6 +37,7 @@ class AbstractError extends Error {
    * @memberof AbstractError
    */
   exit() {
+    
     process.exit(1);
   }
 }

@@ -4,6 +4,7 @@
   "description": "AppCreate CLI é uma ferramenta de linha de comando poderosa para criação de projetos e gerenciamento de dependências dos pacotes AppCreate.",
   "main": "index.js",
   "scripts": {
+    "postinstall": "appcreate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {

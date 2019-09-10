@@ -7,6 +7,7 @@ const path = require('path');
  * @returns
  */
 function isClass(obj) {
+
   return (
     typeof obj === 'function'
     && obj.hasOwnProperty('prototype')
@@ -21,6 +22,7 @@ function isClass(obj) {
  * @returns
  */
 function normalizePath(pathString = '') {
+  
   return (
     pathString.replace(/\/|\\/g, path.sep)
   );
