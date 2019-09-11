@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const AppCreate = require('../AppCreate');
 
 const AbstractCommand = require('../Contracts/AbstractCommand');
@@ -8,21 +10,36 @@ class HelpCommand extends AbstractCommand {
 
     super(args);
     this.name = 'help';
-    this.description = 'help command for appcreate.';
+    this.description = 'Comando "help" para appcreate e seus comandos.';
   }
 
   run() {
 
+
+    let manifestGlobalCommands = {};
+
     let manifestGlobalFile = AppCreate.getManifestGlobalFilePath();
 
-    let commandsManifest = require(manifestGlobalFile);
+    if (fs.existsSync(manifestGlobalFile)) {
+      manifestGlobalCommands = require(manifestGlobalFile);
+    }
+
+    let manifestLocalCommands = {};
+
+    let manifestLocalFile = AppCreate.getManifestLocalFilePath();
+
+    if (fs.existsSync(manifestLocalFile)) {
+      manifestLocalCommands = require(manifestLocalFile);
+    }
+
+    let manifestCommands = { ...manifestGlobalCommands, ...manifestLocalCommands };
 
     let commandsMenus = {};
     let mainMenu = [];
 
-    Object.keys(commandsManifest).forEach(name => {
+    Object.keys(manifestCommands).forEach(name => {
 
-      let command = commandsManifest[name];
+      let command = manifestCommands[name];
       let options = command.help;
 
       mainMenu.push(`${(name + ' ').padEnd(30, '.')}  ${command.description}`);
@@ -47,7 +64,7 @@ class HelpCommand extends AbstractCommand {
     });
 
     commandsMenus['main'] = `appcreate [command] <options>
-    ${'\n'}to get help for any command type:${'\n'}
+    ${'\n'}Para obter ajuda para qualquer comando digite:${'\n'}
     appcreate help [command]
     appcreate [command] --help
     appcreate [command] -h
@@ -56,7 +73,7 @@ class HelpCommand extends AbstractCommand {
 
     const subCmd = this.args._[0] === 'help'
       ? this.args._[1]
-      : this.args._[0]; 
+      : this.args._[0];
 
     console.log(commandsMenus[subCmd] || commandsMenus.main);
   }

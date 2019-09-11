@@ -5,9 +5,9 @@ class VersionCommand extends AbstractCommand {
   constructor(args) {
 
     super(args);
-    
+
     this.name = 'version';
-    this.description = 'get "appcreate" current version' 
+    this.description = 'Mostra a versão atual para "appcreate"' 
   }
 
   run() {

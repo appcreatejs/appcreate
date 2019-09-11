@@ -227,9 +227,9 @@ class AppCreate {
 
     fs.readdirSync(commandsDirectory).forEach(file => {
 
-      if (!file.endsWith('Command.js')) return;
+      if (!file.endsWith('Command.js')) return; 
 
-      let Command = require(`./Commands/${file}`);
+      let Command = require(`${commandsDirectory}/${file}`);
 
       if (!(isClass(Command))) {
 
@@ -239,7 +239,7 @@ class AppCreate {
       let name = file.replace('Command.js', '').toLowerCase();
 
       Command = new Command({});
- 
+
       commands[name] = {
         name: typeof Command.name === 'string' ? Command.name : name,
         path: `./Commands/${file}`,
@@ -288,7 +288,7 @@ class AppCreate {
     let currentDirectory = process.cwd();
 
     return normalizePath(
-      `${currentDirectory}/storage/cache/cli`
+      `${currentDirectory}/storage/cache/cli/commands-manifest.json`
     );
   }
 }
