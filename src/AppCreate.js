@@ -41,9 +41,20 @@ class AppCreate {
    */
   static fromProcess() {
 
-    AppCreate.generateManifest(false);
-    AppCreate.commands = require(AppCreate.getManifestGlobalFilePath());
     AppCreate.args = minimist(process.argv.slice(2));
+
+    
+    let cmdArg = AppCreate.args._[0];
+    
+    
+    let generateLocal = cmdArg === 'build' && AppCreate.args.force != 'global';
+ 
+    let forceCreateGlobal = cmdArg === 'build' && AppCreate.args.force == 'global';
+
+    AppCreate.generateManifest(generateLocal, forceCreateGlobal);
+    
+    AppCreate.commands = require(AppCreate.getManifestGlobalFilePath());
+
     AppCreate.execute();
   }
 
@@ -227,7 +238,7 @@ class AppCreate {
 
     fs.readdirSync(commandsDirectory).forEach(file => {
 
-      if (!file.endsWith('Command.js')) return; 
+      if (!file.endsWith('Command.js')) return;
 
       let Command = require(`${commandsDirectory}/${file}`);
 
