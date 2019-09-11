@@ -10,7 +10,8 @@ const minimist = require('minimist');
  */
 const {
   isClass,
-  normalizePath
+  normalizePath,
+  isWritable,
 } = require('./utils/helpers');
 
 /**
@@ -43,16 +44,16 @@ class AppCreate {
 
     AppCreate.args = minimist(process.argv.slice(2));
 
-    
+
     let cmdArg = AppCreate.args._[0];
-    
-    
+
+
     let generateLocal = cmdArg === 'build' && AppCreate.args.force != 'global';
- 
+
     let forceCreateGlobal = cmdArg === 'build' && AppCreate.args.force == 'global';
 
     AppCreate.generateManifest(generateLocal, forceCreateGlobal);
-    
+
     AppCreate.commands = require(AppCreate.getManifestGlobalFilePath());
 
     AppCreate.execute();
@@ -178,7 +179,11 @@ class AppCreate {
       return false;
     }
 
-    let manifestLocalCacheDirectory = AppCreate.getManifestLocalFilePath()
+    let currentDirectory = process.cwd();
+
+    let manifestLocalCacheDirectory = normalizePath(
+      `${currentDirectory}/storage/cache/cli/`
+    );
 
     let commandsLocalDirectory = normalizePath(
       `${process.cwd()}/app/Commands/`
