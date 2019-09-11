@@ -44,9 +44,7 @@ class AppCreate {
 
     AppCreate.args = minimist(process.argv.slice(2));
 
-
     let cmdArg = AppCreate.args._[0];
-
 
     let generateLocal = cmdArg === 'build' && AppCreate.args.force != 'global';
 
@@ -54,9 +52,22 @@ class AppCreate {
 
     AppCreate.generateManifest(generateLocal, forceCreateGlobal);
 
+    AppCreate.commands = {};
+
+    let manifestGlobalFile = {};
+    let manifestLocalFile = {};
+
+    if (fs.existsSync(AppCreate.getManifestGlobalFilePath())) {
+      manifestGlobalFile = require(AppCreate.getManifestGlobalFilePath());
+    }
+
+    if (fs.existsSync(AppCreate.getManifestLocalFilePath())) {
+      manifestLocalFile = require(AppCreate.getManifestLocalFilePath());
+    }
+
     AppCreate.commands = {
-      ...require(AppCreate.getManifestGlobalFilePath()),
-      ...require(AppCreate.getManifestLocalFilePath()),
+      ...manifestGlobalFile,
+      ...manifestLocalFile,
     };
 
     AppCreate.execute();
