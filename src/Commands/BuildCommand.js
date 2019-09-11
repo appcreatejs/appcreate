@@ -20,7 +20,6 @@ class BuildCommand extends AbstractCommand {
        * Recria o manifest para os comandos globais.
        */
       case 'global':
-        console.log('fuck')
         AppCreate.generateManifest(false, true);
         break;
 
