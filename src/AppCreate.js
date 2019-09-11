@@ -54,7 +54,10 @@ class AppCreate {
 
     AppCreate.generateManifest(generateLocal, forceCreateGlobal);
 
-    AppCreate.commands = require(AppCreate.getManifestGlobalFilePath());
+    AppCreate.commands = {
+      ...require(AppCreate.getManifestGlobalFilePath()),
+      ...require(AppCreate.getManifestLocalFilePath()),
+    };
 
     AppCreate.execute();
   }
@@ -256,9 +259,14 @@ class AppCreate {
 
       Command = new Command({});
 
+
+      let path = /app\/Commands/.test(commandsDirectory)
+        ? `../../../app/Commands/${file}`
+        : `./Commands/${file}`;
+
       commands[name] = {
         name: typeof Command.name === 'string' ? Command.name : name,
-        path: `./Commands/${file}`,
+        path: path,
         help: Command.help,
         description: typeof Command.description === 'string' ? Command.description : '',
       };
