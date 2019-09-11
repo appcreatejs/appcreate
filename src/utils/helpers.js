@@ -36,13 +36,7 @@ function normalizePath(pathString = '') {
  */
 function isWritable(path) {
 
-  try {
-
-    fs.accessSync(path, fs.constants.W_OK);
-    return true;
-  } catch {
-    return false
-  }
+  return true;
 }
 
 module.exports = {
